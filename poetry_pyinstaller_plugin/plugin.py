@@ -268,7 +268,7 @@ class PyInstallerTarget(object):
         output = textwrap.indent(pyinst_build, " " * 6)
         io.write(f"<debug>{output}</debug>")
 
-        if package_config:
+        if package_config and self.type is not PyinstDistType.SINGLE_FILE:
             package_path = Path("dist", "pyinstaller", platform, self.prog)
             for source, target in package_config.items():
                 destination = Path(package_path / (target if target != "." else source))
